@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Header</title>
+    <style>
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            top: -8px;
+            line-height: 50px;
+            background-color: aquamarine;
+            margin-left: -30px;
+            margin-right: -60px;
+        
+            
+        }
+
+        .header a {
+            text-decoration: none;
+
+        }
+
+        header a:visited {
+              color: #0c1416;
+        }
+
+       
+
+        .search button{
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 180px;
+            background-color: greenyellow;
+        }
+        .search input{
+            height: 20px;
+            border-radius: 170px;
+        }
+        .main{
+            margin-top: 30px;
+        }
+        body{
+           background-image: url(https://c.wallhere.com/photos/c4/56/3860x2160_px_blue_computer_headphones_keyboard_mechanical_Microphone_mouse-1720303.jpg!d);
+           background-repeat: no-repeat;
+            background-position: center;
+            background-position-y: 0;
+            background-color: #62E4FF;
+            
+        }
+        table{
+            color: #14ffdc;
+            border-color: #6aff06;
+        }
+        .fa{
+            font-size: 30px;
+            margin-left: 10px;
+        }
+        .material-icons{
+            font-size: 30px;
+            margin-left: 5px;
+        }
+        table{
+           text-align: center;
+           width: 100%;
+           font-weight: bold;
+        }
+        table a{
+            color: #08ff10;
+        }
+        table a:visited{
+            color: #08ff10;
+        }
+    
+        .error{
+          margin-top:20px;
+        color: red;
+         text-align: center;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div id="home"><a th:href="@{/admin/karaoke/}">Trang Chủ</a></div>
+        <div id="add"><a th:href="@{/admin/karaoke/add}">Thêm Bài Hát Mới</a></div>
+        <div id="thongke"><a th:href="@{/admin/karaoke/thongke}">Thống Kê</a></div>
+        <div class="search">
+            <form th:action="@{/admin/karaoke/home}">
+                <input type="text" id="tim" name="tenBh" >
+                <button>Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="error">
+    <i class="fa fa-bell-o" style="font-size:48px;color:red"></i>
+    <h1>Bài Hát Không Tồn Tại!</h1>
+    </div>
+    
+    
+
+</body>
+
+</html>

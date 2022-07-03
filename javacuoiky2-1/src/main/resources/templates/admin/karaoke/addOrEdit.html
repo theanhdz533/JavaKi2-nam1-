@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Information</title>
+    <style>
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            top: -8px;
+            line-height: 50px;
+            background-color: aquamarine;
+            margin-left: -30px;
+            margin-right: -60px;
+
+
+        }
+
+        .header a {
+            text-decoration: none;
+
+        }
+
+        header a:visited {
+            color: #0c1416;
+        }
+
+
+
+        .search button {
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 180px;
+            background-color: greenyellow;
+        }
+
+        .search input {
+            height: 20px;
+            border-radius: 170px;
+        }
+
+        .main {
+            margin-top: 20px;
+            font-size: 25px;
+        }
+
+        body {
+            background-image: url(https://c.wallhere.com/photos/c4/56/3860x2160_px_blue_computer_headphones_keyboard_mechanical_Microphone_mouse-1720303.jpg!d);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-position-y: 0;
+            background-color: #62E4FF;
+
+        }
+
+        .btn {
+            text-align: center;
+        }
+
+        .btn button {
+            background-color: rgb(17, 249, 63);
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+
+        }
+
+        #mabh {
+            display: none;
+        }
+
+        .error {
+            color: rgb(255, 127, 127);
+            
+        }
+
+        label {
+            color: rgb(7, 15, 12);
+            font-size: 20px;
+            text-align: justify ;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+
+        }
+
+        #abc {
+            background-color: aliceblue;
+        }
+
+        .main1 {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .main2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-top: 59px;
+            margin-left: -382px;
+        }
+        .main input{
+           border-style: dashed;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div id="home"><a th:href="@{/admin/karaoke/}">Trang Chủ</a></div>
+        <div id="add"><a th:href="@{/admin/karaoke/add}">Thêm Bài Hát Mới</a></div>
+        <div id="thongke"><a th:href="@{/admin/karaoke/thongke}">Thống Kê</a></div>
+        <div class="search">
+            <form th:action="@{/admin/karaoke/home}">
+                <input type="text" id="tim" name="tenBh">
+                <button>Search</button>
+            </form>
+        </div>
+    </div>
+
+    <form th:action="@{/admin/karaoke/saveOrUpdate}" method="post" th:object="${list}" id="abc">
+        <div class="main">
+            <div class="main1">
+                <input type="hidden" th:field="*{isEdit}">
+                <label for="mabh" id="mabh">Mã Bài hát</label>
+                <input type="text" id="mabh" placeholder="Nhập Mã Bài Hát" th:field="*{maBh}">
+                <br><br>
+                <label for="tenbh">Tên Bài Hát</label>
+                <input type="text" id="tenbh" placeholder="Nhập tên bài hát" th:field="*{tenBh}">
+                <h5 th:if="${#fields.hasErrors('tenBh')}" class="error">Không được bỏ trống!</h5>
+                <br><br>
+                <label for="loimd">Lời Mở Đầu </label>
+                <input type="text" id="loimd" placeholder="Nhập lời mở đầu" th:field="*{loiMoDau}">
+                <h5 th:if="${#fields.hasErrors('loiMoDau')}" class="error">Không được bỏ trống!</h5>
+                <br><br>
+                <label for="theloai">Thể Loại</label>
+                <input type="text" id="theloai" placeholder="Nhập thể loại" th:field="*{theLoai}">
+                <h5 th:if="${#fields.hasErrors('theLoai')}" class="error">Không được bỏ trống!</h5>
+                <br><br>
+            </div>
+            <div class="main2">
+                <label for="casi">Ca Sĩ </label>
+                <input type="text" id="casi" placeholder="Nhập tên ca sĩ" th:field="*{caSi}">
+                <h5 th:if="${#fields.hasErrors('caSi')}" class="error">Không được bỏ trống!</h5>
+                <br><br>
+                <label for="nhacsi">Nhạc Sĩ </label>
+                <input type="text" id="nhacsi" placeholder="Nhập tên nhạc sĩ" th:field="*{nhacSi}">
+                <h5 th:if="${#fields.hasErrors('nhacSi')}" class="error">Không được bỏ trống!</h5>
+                <br><br>
+                <label for="loibh">Nhập link bài hát</label>
+                <input id="loibh" type="text" th:field="*{loiBatHat}" placeholder="Chỉ cần copy địa chỉ cuối!">
+                <h5 th:if="${#fields.hasErrors('loiBatHat')}" class="error">Không được bỏ trống!</h5>
+
+            </div>
+        </div>
+
+
+        <div class="btn">
+            <br><br>
+            <button>
+                <span th:if="${list.isEdit}">Update</span>
+                <span th:unless="${list.isEdit}">Save</span>
+            </button>
+        </div>
+    </form>
+
+
+
+</body>
+
+</html>

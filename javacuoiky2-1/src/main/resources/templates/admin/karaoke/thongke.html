@@ -1,0 +1,84 @@
+<html>
+  <head>
+  <title>Chart</title>
+  <style>
+    .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            top: -8px;
+            line-height: 50px;
+            background-color: aquamarine;
+            margin-left: -30px;
+            margin-right: -60px;
+        
+            
+        }
+        .header a {
+            text-decoration: none;
+
+        }
+
+        header a:visited {
+              color: #0c1416;
+        }
+
+       
+
+        .search button{
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 180px;
+            background-color: greenyellow;
+        }
+        .search input{
+            height: 30px;
+            border-radius: 170px;
+        }
+        #piechart{
+        margin-left:400px;
+        }
+  </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Karaoke'],
+          ['Nhạc Vàng',     [[${vang}]]],
+          ['Nhạc Trẻ',      [[${tre}]]],
+          ['Nhạc Nước Ngoài',  [[${ngoai}]]],
+          ['Khác', [[${khac}]]]
+        ]);
+
+        var options = {
+          title: 'Thống Kê Theo Thể Loại Bài Hát'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="header">
+        <div id="home"><a th:href="@{/admin/karaoke/}">Trang Chủ</a></div>
+        <div id="add"><a th:href="@{/admin/karaoke/add}">Thêm Bài Hát Mới</a></div>
+        <div id="thongke"><a th:href="@{/admin/karaoke/thongke}">Thống Kê</a></div>
+        <div class="search">
+            <form th:action="@{/admin/karaoke/home}">
+                <input type="text" id="tim" name="tenBh" >
+                <button>Search</button>
+            </form>
+        </div>
+    </div>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
